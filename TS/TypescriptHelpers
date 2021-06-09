@@ -1,0 +1,58 @@
+function GetElementValue(id: string): string {
+    return (<HTMLInputElement>document.getElementById(id)).value;
+}
+function GetInputElement(id: string): HTMLInputElement {
+    return (<HTMLInputElement>document.getElementById(id));
+}
+
+
+
+/*
+  let p = this.GetPostPromise(this.url, null);
+
+        $.ajax(p).done(function (result, x, y) {
+
+         
+            if (this.callBack != null) this.callBack(result);
+        });
+ */
+ GetPostPromise(url: string, data: any): any {
+
+        var ajaxSettings = {
+            type: "POST",
+            url: url,
+            dataType: "json",
+            data: data, //url has querystring
+            context: this,
+            success: function (result) {
+
+            }, error: function (xhr, status, p3) {
+                //debugger;
+
+                var err = "Error " + " " + status + " " + p3 + xhr.responseText; //+ " " + p4;
+                if (xhr.responseText && xhr.responseText[0] == "{")
+                    err = JSON.parse(xhr.responseText).Message;
+                //console.log(err);
+                alert(" Error ====>>>> " + err + " " + xhr.responseText); //rebiew and let client handle errors
+            }
+
+
+        }
+
+        return ajaxSettings;
+
+
+    }
+
+
+
+
+
+//use of the above
+
+    function Sample(){
+
+
+
+
+    }
